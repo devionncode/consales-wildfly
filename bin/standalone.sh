@@ -8,7 +8,6 @@
 DEBUG_MODE="${DEBUG:-false}"
 DEBUG_PORT="${DEBUG_PORT:-8787}"
 GC_LOG="$GC_LOG"
-SERVER_OPTS="--server-config=standalone-full.xml"
 while [ "$#" -gt 0 ]
 do
     case "$1" in
