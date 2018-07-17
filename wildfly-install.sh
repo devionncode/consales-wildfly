@@ -44,7 +44,7 @@ WILDFLY_CONFIG=$WILDFLY_MODE"-full"
 
 WILDFLY_STARTUP_TIMEOUT=240
 WILDFLY_SHUTDOWN_TIMEOUT=30
-JAVA_DIR=$INSTALL_DIR/$WILDFLY_SERVICE_INSTANCE_NAME/"java"
+JAVA_DIR=$INSTALL_DIR/$WILDFLY_SERVICE_INSTANCE_NAME/java
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -207,14 +207,18 @@ sed -i -e 's,<port>9990</port>,<port>'$PORT_MNGNT'</port>,g' $WILDFLY_DIR/bin/jb
 
 sed -i -e 's,JAVA_OPTS="-Xms64m -Xmx512m -XX:MetaspaceSize=96M -XX:MaxMetaspaceSize=256m -Djava.net.preferIPv4Stack=true",JAVA_OPTS="-Xms1024m -Xmx2048m -XX:PermSize=512m -XX:MaxPermSize=1024m -XX:MetaspaceSize=96M -XX:MaxMetaspaceSize=256m -Djava.net.preferIPv4Stack=true -DGEOSERVER_DATA_DIR=/opt/geoserver/data",g' $WILDFLY_DIR/bin/$WILDFLY_MODE.conf
 
-if [ ! -d "$JAVA_DIR" ]; then
-  mkdir $JAVA_DIR
-fi
-
-if [ "$(ls -A $JAVA_DIR)" ]; then
-  wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie"$JAVA_DOWNLOAD_ADDRESS $JAVA_DIR
-  tar -xvzf $JAVA_DIR/$JAVA_FILENAME $JAVA_DIR
-fi
+  
+mkdir $JAVA_DIR
+echo "Download Java..."
+wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" $JAVA_DOWNLOAD_ADDRESS --output-document=$JAVA_DIR/$JAVA_FILENAME
+tar -C $JAVA_DIR -xvf $JAVA_DIR/$JAVA_FILENAME
+rm $JAVA_DIR/$JAVA_FILENAME
+for entry in "$JAVA_DIR"/*
+do
+  cp -R "$entry"/* $JAVA_DIR/
+  rm -R "$entry"
+done
+chmod -R 777 $WILDFLY_DIR
 
 [ -x /bin/systemctl ] && systemctl start $WILDFLY_SERVICE || service $WILDFLY_SERVICE start
 
