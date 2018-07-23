@@ -220,6 +220,10 @@ do
 done
 chmod -R 777 $WILDFLY_DIR
 
+### Criando arquivo de configuracao de conexao do consales
+echo " " > /consales.config
+chmod 777 /consales.config
+
 [ -x /bin/systemctl ] && systemctl start $WILDFLY_SERVICE || service $WILDFLY_SERVICE start
 
 echo "Done."
