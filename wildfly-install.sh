@@ -1,13 +1,3 @@
-#!/bin/bash
-#title           :wildfly-install.sh
-#description     :The script to install Wildfly 10.x
-#more            :http://sukharevd.net/wildfly-8-installation.html
-#author          :Dmitriy Sukharev
-#date            :2015-10-24T17:14-0700
-#usage           :/bin/bash wildfly-install.sh
-#tested-version  :10.0.0.Final
-#tested-distros  :Debian 7,8; Ubuntu 15.10; CentOS 7; Fedora 22
-
 WILDFLY_VERSION_SHORT=11.0.0
 WILDFLY_VERSION_SUFFIX=Final
 WILDFLY_VERSION=$WILDFLY_VERSION_SHORT.$WILDFLY_VERSION_SUFFIX
@@ -16,7 +6,6 @@ WILDFLY_ARCHIVE_NAME="master.zip"
 WILDFLY_DOWNLOAD_ADDRESS=https://github.com/devionncode/consales-wildfly/archive/master.zip
 JAVA_FILENAME=jdk-8u181-linux-x64.tar.gz
 JAVA_DOWNLOAD_ADDRESS=http://download.oracle.com/otn-pub/java/jdk/8u181-b13/96a7b8442fe848ef90c96a2fad6ed6d1/$JAVA_FILENAME
-#http://download.jboss.org/wildfly/$WILDFLY_VERSION/$WILDFLY_ARCHIVE_NAME
 
 if [[ $EUID -ne 0 ]]; then
    echo "Deve ser executado como root."
