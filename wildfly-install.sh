@@ -70,6 +70,7 @@ rm -rf "/etc/systemd/system/$WILDFLY_SERVICE.service"
 echo "Installation of $WILDFLY_SERVICE_INSTANCE_NAME..."
 echo "Destination dir: $WILDFLY_SERVICE_INSTANCE_DIR"
 
+apt-get install unzip
 mkdir $WILDFLY_SERVICE_INSTANCE_DIR
 echo "Extraindo..."
 unzip $WILDFLY_ARCHIVE_NAME -d $WILDFLY_SERVICE_INSTANCE_DIR 
