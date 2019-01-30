@@ -4,8 +4,8 @@ WILDFLY_VERSION=$WILDFLY_VERSION_SHORT.$WILDFLY_VERSION_SUFFIX
 WILDFLY_FILENAME="consales-wildfly-master"
 WILDFLY_ARCHIVE_NAME="master.zip"
 WILDFLY_DOWNLOAD_ADDRESS=https://github.com/devionncode/consales-wildfly/archive/master.zip
-JAVA_FILENAME=jdk-8u181-linux-x64.tar.gz
-JAVA_DOWNLOAD_ADDRESS=http://download.oracle.com/otn-pub/java/jdk/8u181-b13/96a7b8442fe848ef90c96a2fad6ed6d1/$JAVA_FILENAME
+JAVA_FILENAME=jdk-8u201-linux-x64.tar.gz
+JAVA_DOWNLOAD_ADDRESS=https://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/$JAVA_FILENAME
 
 if [[ $EUID -ne 0 ]]; then
    echo "Deve ser executado como root."
